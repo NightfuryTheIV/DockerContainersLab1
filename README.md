@@ -48,3 +48,6 @@ CMD \["java", "Main"]
 
 <img width="945" height="66" alt="image" src="https://github.com/user-attachments/assets/c5163e5d-d906-4a84-b175-71c6fcf1c6f8" />
 (changed terminal this time I’m using Intellij IDEA)
+
+*Question 1-4: Multistage builds are useful to keep Dockerfiles easy to read and maintain. The three lines under the build stage comment are used to establish the working environment and download JDK 21 and Alpine Linux, then we add Maven to the project, then we just copy the contents of pom.xml as well as the source code in src into the image and we compile it into a jar using Maven. and then we start a whole new image and redefine the working environment, then we copy the jar from before into here and rename is myapp.jar and then we just run it*
+
