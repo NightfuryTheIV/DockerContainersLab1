@@ -51,3 +51,28 @@ CMD \["java", "Main"]
 
 *Question 1-4: Multistage builds are useful to keep Dockerfiles easy to read and maintain. The three lines under the build stage comment are used to establish the working environment and download JDK 21 and Alpine Linux, then we add Maven to the project, then we just copy the contents of pom.xml as well as the source code in src into the image and we compile it into a jar using Maven. and then we start a whole new image and redefine the working environment, then we copy the jar from before into here and rename is myapp.jar and then we just run it*
 
+
+After changing the src folder with the one provided to us (in the "backend api" commit), all I had to do was change the application.yml which I did after making the backend database as follows (also I have changed IDE again now I'm back on VS Code):
+<img width="1496" height="276" alt="image" src="https://github.com/user-attachments/assets/2107b5fa-628f-45f3-a89a-5147bab1ce0b" />
+Here we can see that I already have a postgres image set up so I'll be using it to make the container database.
+
+<img width="1490" height="48" alt="image" src="https://github.com/user-attachments/assets/c8d4a171-fde0-4b16-af79-5e00a7d5d948" />
+I also have to rebuild the image for this part since I changed application.yml, I called the image "springg" and the container "springtest".
+<img width="1057" height="106" alt="image" src="https://github.com/user-attachments/assets/fe4903f2-f765-4e18-920f-91c88c2e064f" />
+<img width="1046" height="50" alt="image" src="https://github.com/user-attachments/assets/993cf396-f38f-4132-b820-f4a7de0efad5" />
+<img width="1488" height="155" alt="image" src="https://github.com/user-attachments/assets/29a8d106-f272-47d8-a32f-186ae525f5bd" />
+
+
+## HTTP Server
+I made a very simple html page called index.html to test out the server connection and I also chose to use the httpd image as hinted in the lab.
+Moreover I also used a trick to get the httpd.conf as you will see below:
+<img width="1349" height="216" alt="image" src="https://github.com/user-attachments/assets/1cc02881-8687-4ea7-930e-b8cf3c7cffa8" />
+note that this is in a new folder tp1-http, and this gives us three files for the new image I chose to name http1, and I also added "ServerName 127.0.0.1" to avoid the apache2 warning
+
+<img width="1067" height="442" alt="image" src="https://github.com/user-attachments/assets/1fa1b720-ef91-43c4-8cb4-930cf174380e" />
+then I made the container httpcontainer and also ran docker stats
+<img width="1391" height="161" alt="image" src="https://github.com/user-attachments/assets/52f55826-807a-4aa9-a6b9-cc461803ff67" />
+docker logs
+<img width="1301" height="88" alt="image" src="https://github.com/user-attachments/assets/d348ec5c-7c4e-4f26-ad53-e18a93967665" />
+
+<img width="1486" height="254" alt="image" src="https://github.com/user-attachments/assets/01cc0335-7998-4de1-b164-e5be33393239" />
