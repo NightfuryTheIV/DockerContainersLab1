@@ -1,7 +1,7 @@
 services:
     backend:
         build: ./tp1-spring/simpleapi
-        networks:
+        networks: # made two networks so that httpd and database don't communicate directly, but only through the backend
         - backend-database-network
         - httpd-backend-network
         depends_on:
