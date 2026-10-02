@@ -76,3 +76,24 @@ docker logs
 <img width="1301" height="88" alt="image" src="https://github.com/user-attachments/assets/d348ec5c-7c4e-4f26-ad53-e18a93967665" />
 
 <img width="1486" height="254" alt="image" src="https://github.com/user-attachments/assets/01cc0335-7998-4de1-b164-e5be33393239" />
+
+## Reverse proxy
+changes I made to httpd.conf (after changing the name of the spring container "springtest" to "backend"):
+```
+<VirtualHost *:80>
+ProxyPreserveHost On
+ProxyPass / http://backend:8080/
+ProxyPassReverse / http://backend:8080/
+</VirtualHost>
+```
+
+*Question 1-5: We need a reverse proxy to not only hide the port in the url but also make it so that when a user logs into the page, we can secretly send them to different ports without them noticing, and also it allows us to not have to specify the ports when linking the container to another one*
+
+## Docker.compose
+*Question 1-6: Docker.compose is this important because it allows us to not have to manually run and stop every container necessary to the launch of an application, and it also allows to not mess up the order to do so thanks to the depends-on line that makes it so that a container will explicitely wait for the specified other container to be up before running.*
+
+*Question 1-7: the most important docker compose command is docker compose up --build because it's what launches all the containers for the application.*
+
+Docker Desktop:
+<img width="517" height="303" alt="image" src="https://github.com/user-attachments/assets/1f68d0a4-dae9-4b1e-ba6e-0c252623c058" />
+<img width="1601" height="162" alt="image" src="https://github.com/user-attachments/assets/e150f06c-8194-4c9b-a587-3410b0b48f25" />
