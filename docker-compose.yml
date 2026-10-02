@@ -1,0 +1,31 @@
+services:
+    backend:
+        build: ./tp1-spring/simpleapi
+        networks:
+        - backend-database-network
+        - httpd-backend-network
+        depends_on:
+        - database
+
+    database:
+        build: .
+        networks:
+        - backend-database-network
+        volumes:
+        - postgresdatafolder:/var/lib/postgresql/data
+
+    httpd:
+        build: ./tp1-http
+        ports:
+        - "80:80"
+        networks:
+        - httpd-backend-network
+        depends_on:
+        - backend
+
+networks:
+  httpd-backend-network:
+  backend-database-network:
+
+volumes:
+  postgresdatafolder:
